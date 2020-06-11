@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/wall-fire3.png" type="Texture" id=1]
+[ext_resource path="res://sprites/wall-fire2.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Pipe.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/wall-fire1.png" type="Texture" id=5]
+[ext_resource path="res://sounds/fire2.wav" type="AudioStream" id=6]
+[ext_resource path="res://sprites/fire_wall_5.png" type="Texture" id=7]
+[ext_resource path="res://sprites/fire_wall_4.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "GrowingFire"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 3, 1, 3, 4, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ShapeTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -10 ), Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1.1487 ),
+"update": 0,
+"values": [ Vector2( 0, -10 ), Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ShapeTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -17.139, 3.90248 ), Vector2( 0, 0 ), Vector2( 18.5052, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8.30281, 22.4417 )
+
+[node name="WallFire" type="StaticBody2D"]
+position = Vector2( 0, -0.871735 )
+collision_layer = 2
+script = ExtResource( 3 )
+
+[node name="Top" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -10 )
+frames = SubResource( 1 )
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Top"]
+autoplay = "fire_anim"
+anims/GrowingFire = SubResource( 5 )
+anims/fire_anim = SubResource( 6 )
+
+[node name="ShapeTop" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10 )
+scale = Vector2( 1, 0.839999 )
+shape = SubResource( 4 )
+
+[node name="EndPosition" type="Position2D" parent="."]
+position = Vector2( 13, 0 )
+
+[node name="Coin" parent="." instance=ExtResource( 4 )]
+position = Vector2( 9.32573, 0 )
+scale = Vector2( 0.560002, 9.48 )
+
+[node name="sound_fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true

@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sounds/fire.wav" type="AudioStream" id=1]
+[ext_resource path="res://sprites/fire3.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Pipe.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/fire1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/fire2.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "fire_anim"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fire_anim"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13.4252, 79.257 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 12.8235, 79.34 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "GrowingFire"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Top:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -108.9 ), Vector2( 0, -70.3941 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShapeTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, -137.685 ), Vector2( 2.30913, -98.2759 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bottom:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 108.884 ), Vector2( 3, 69.8838 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShapeBottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 137.683 ), Vector2( 1, 98.6826 ) ]
+}
+
+[node name="Pipe" type="StaticBody2D"]
+position = Vector2( 0, -0.871735 )
+collision_layer = 2
+script = ExtResource( 3 )
+
+[node name="Top" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -70 )
+rotation = 3.14159
+frames = SubResource( 1 )
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Top"]
+autoplay = "fire_anim"
+anims/fire_anim = SubResource( 2 )
+
+[node name="Bottom" type="AnimatedSprite" parent="."]
+position = Vector2( 3, 70 )
+rotation = 6.28318
+frames = SubResource( 1 )
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bottom"]
+autoplay = "fire_anim"
+anims/fire_anim = SubResource( 3 )
+
+[node name="ShapeTop" type="CollisionShape2D" parent="."]
+position = Vector2( 2.309, -98 )
+shape = SubResource( 4 )
+
+[node name="ShapeBottom" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 98 )
+shape = SubResource( 5 )
+
+[node name="EndPosition" type="Position2D" parent="."]
+position = Vector2( 13, 0 )
+
+[node name="Coin" parent="." instance=ExtResource( 4 )]
+position = Vector2( 9.32573, 0 )
+scale = Vector2( 0.560002, 3.64 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/GrowingFire = SubResource( 6 )
+
+[node name="sound_fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -11.492
+autoplay = true

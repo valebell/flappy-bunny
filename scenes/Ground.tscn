@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/ground.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Ground.gd" type="Script" id=2]
+[ext_resource path="res://sprites/ceiling.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 84.4576, 15.5652 )
+
+[node name="Ground" type="StaticBody2D"]
+position = Vector2( 0, 256 )
+collision_layer = 4
+script = ExtResource( 2 )
+
+[node name="ground" type="Sprite" parent="."]
+position = Vector2( 0, -64.8868 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 84.4678, -11.0554 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 84.4678, -224.211 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 84.4678, -241.847 )
+shape = SubResource( 1 )
+
+[node name="ground_end_position" type="Position2D" parent="."]
+position = Vector2( 168, 0 )
