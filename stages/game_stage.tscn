@@ -1,26 +1,26 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene format=3]
 
-[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Bird.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/Camera.gd" type="Script" id=3]
-[ext_resource path="res://scenes/SpawnerGround.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/SpawnerPipe.tscn" type="PackedScene" id=5]
-[ext_resource path="res://sprites/instructions.png" type="Texture2D" id=6]
-[ext_resource path="res://sprites/replay.png" type="Texture2D" id=7]
-[ext_resource path="res://sprites/0_big.png" type="Texture2D" id=8]
-[ext_resource path="res://sprites/0_small.png" type="Texture2D" id=9]
-[ext_resource path="res://sprites/replay-icon2.png" type="Texture2D" id=10]
-[ext_resource path="res://sprites/replay-icon1.png" type="Texture2D" id=11]
-[ext_resource path="res://sprites/replay-icon3.png" type="Texture2D" id=12]
-[ext_resource path="res://sprites/game_over.png" type="Texture2D" id=13]
-[ext_resource path="res://sprites/score.png" type="Texture2D" id=14]
-[ext_resource path="res://sprites/select_perso_3.png" type="Texture2D" id=15]
-[ext_resource path="res://sprites/inactive_select_perso.png" type="Texture2D" id=16]
-[ext_resource path="res://sprites/select_perso_2.png" type="Texture2D" id=17]
-[ext_resource path="res://sprites/select_perso_1.png" type="Texture2D" id=18]
-[ext_resource path="res://sprites/best_score.png" type="Texture2D" id=20]
+[ext_resource type="PackedScene" path="res://scenes/Background.tscn" id="1_eet5q"]
+[ext_resource type="PackedScene" path="res://scenes/Bird.tscn" id="2_db65g"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="3_e8j3m"]
+[ext_resource type="PackedScene" path="res://scenes/SpawnerPipe.tscn" id="4_niacv"]
+[ext_resource type="PackedScene" path="res://scenes/SpawnerGround.tscn" id="5_wm8kn"]
+[ext_resource type="Texture2D" path="res://sprites/instructions.png" id="6_1fmyn"]
+[ext_resource type="Texture2D" path="res://sprites/0_big.png" id="7_bw8v3"]
+[ext_resource type="Texture2D" path="res://sprites/game_over.png" id="8_h5rnk"]
+[ext_resource type="Texture2D" path="res://sprites/0_small.png" id="9_112b1"]
+[ext_resource type="Texture2D" path="res://sprites/score.png" id="10_cmv1o"]
+[ext_resource type="Texture2D" path="res://sprites/best_score.png" id="11_jm3s1"]
+[ext_resource type="Texture2D" path="res://sprites/replay-icon1.png" id="12_yq0vh"]
+[ext_resource type="Texture2D" path="res://sprites/replay-icon2.png" id="13_v8i1u"]
+[ext_resource type="Texture2D" path="res://sprites/replay-icon3.png" id="14_4s1kg"]
+[ext_resource type="Texture2D" path="res://sprites/select_perso_1.png" id="15_vvayi"]
+[ext_resource type="Texture2D" path="res://sprites/select_perso_2.png" id="16_7x3dj"]
+[ext_resource type="Texture2D" path="res://sprites/select_perso_3.png" id="17_j5i4a"]
+[ext_resource type="Texture2D" path="res://sprites/inactive_select_perso.png" id="18_64x5m"]
+[ext_resource type="Texture2D" path="res://sprites/replay.png" id="19_8p6rd"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 resource_name = "BtnInstructions"
 script/source = "extends TextureButton
 
@@ -43,22 +43,22 @@ func _on_pressed() -> void:
 		hide()
 "
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "hide"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("../HudBackground:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.313726 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0.313726), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id="3"]
 script/source = "extends HBoxContainer
 
 const sprite_numbers = [
@@ -107,8 +107,8 @@ func _set_score(score: int):
 	pass
 "
 
-[sub_resource type="GDScript" id=4]
-script/source = "extends Container
+[sub_resource type="GDScript" id="4"]
+script/source = "extends Control
 
 func _ready() -> void:
 	hide()
@@ -123,7 +123,7 @@ func _on_bird_state_changed(bird: Bird):
 	pass
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id="5"]
 script/source = "extends HBoxContainer
 
 const sprite_numbers = [
@@ -177,7 +177,7 @@ func _set_score(score: int):
 	pass
 "
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id="15"]
 script/source = "extends HBoxContainer
 
 const sprite_numbers = [
@@ -221,8 +221,8 @@ func _set_score(score: int):
 	pass
 "
 
-[sub_resource type="GDScript" id=6]
-script/source = "extends Container
+[sub_resource type="GDScript" id="6"]
+script/source = "extends Control
 
 func _ready() -> void:
 	hide()
@@ -231,8 +231,8 @@ func _ready() -> void:
 		end_score.connect(\"counting_done\", Callable(self, \"show\"))
 "
 
-[sub_resource type="GDScript" id=7]
-script/source = "extends Container
+[sub_resource type="GDScript" id="7"]
+script/source = "extends Control
 
 func _on_Container_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed(\"jump\"):
@@ -240,33 +240,42 @@ func _on_Container_gui_input(event: InputEvent) -> void:
 		StageManager.change_stage(\"res://stages/game_stage.tscn\")
 "
 
-[sub_resource type="SpriteFrames" id=8]
-animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "default",
+[sub_resource type="SpriteFrames" id="8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_yq0vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_v8i1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4s1kg")
+}],
+"loop": 1,
+"name": &"default",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id="9"]
 resource_name = "highlight"
 length = 0.6
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2, 1 ]
+"values": [0, 1, 2, 1]
 }
 
-[sub_resource type="GDScript" id=10]
-script/source = "extends Container
+[sub_resource type="GDScript" id="10"]
+script/source = "extends Control
 
 func _physics_process(_delta: float) -> void:
 	if Game.has_bird():
@@ -280,205 +289,219 @@ func _on_Container2_gui_input(event: InputEvent) -> void:
 		StageManager.change_stage(\"res://stages/game_stage.tscn\")
 "
 
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ ExtResource( 18 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "default",
+[sub_resource type="SpriteFrames" id="11"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_vvayi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7x3dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_j5i4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_64x5m")
+}],
+"loop": 1,
+"name": &"default",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id="12"]
 resource_name = "highlight"
 length = 0.6
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2, 1 ]
+"values": [0, 1, 2, 1]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id="13"]
 resource_name = "inactive"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 3 ]
+"values": [3]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id="14"]
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Container:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.7, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("text_gameover:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.7 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0, 45 ), Vector2( 0, 75 ) ]
+"values": [Vector2(0, 45), Vector2(0, 75)]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("text_gameover:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.7 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("end_score:self_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0, 0.7, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("end_score_nb:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0, 0.7, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("../HudBackground:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PackedFloat32Array( 0, 0.7 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.313726 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.313726)]
 }
 tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("best_score_nb:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
 tracks/7/keys = {
-"times": PackedFloat32Array( 0, 0.7, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
 tracks/8/path = NodePath("best_score:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
 tracks/8/keys = {
-"times": PackedFloat32Array( 0, 0.7, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [node name="World" type="Node2D"]
 
-[node name="Background" parent="." instance=ExtResource( 1 )]
+[node name="Background" parent="." instance=ExtResource("1_eet5q")]
 
-[node name="Bird" parent="." instance=ExtResource( 2 )]
+[node name="Bird" parent="." instance=ExtResource("2_db65g")]
 
 [node name="Camera3D" type="Camera2D" parent="."]
-offset = Vector2( -36, 0 )
+offset = Vector2(-36, 0)
 anchor_mode = 0
 current = true
-script = ExtResource( 3 )
+script = ExtResource("3_e8j3m")
 
-[node name="SpawnerPipe" parent="." instance=ExtResource( 5 )]
+[node name="SpawnerPipe" parent="." instance=ExtResource("4_niacv")]
 
-[node name="SpawnerGround" parent="." instance=ExtResource( 4 )]
+[node name="SpawnerGround" parent="." instance=ExtResource("5_wm8kn")]
 
 [node name="hud" type="CanvasLayer" parent="."]
 
 [node name="HudBackground" type="ColorRect" parent="hud"]
-modulate = Color( 1, 1, 1, 0.313726 )
+modulate = Color(1, 1, 1, 0.313726)
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BtnInstructions" type="TextureButton" parent="hud"]
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = -11.4995
-offset_top = 133.0
+offset_top = -123.0
 offset_right = 156.501
-offset_bottom = 256.0
+offset_bottom = 0.0
 action_mode = 0
-texture_normal = ExtResource( 6 )
-script = SubResource( 1 )
+texture_normal = ExtResource("6_1fmyn")
+script = SubResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/BtnInstructions"]
-anims/hide = SubResource( 2 )
+anims/hide = SubResource("2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="hud"]
 offset_top = 8.0
 offset_right = 144.0
-offset_bottom = 30.0
+offset_bottom = 26.0
 theme_override_constants/separation = 2
 alignment = 1
-script = SubResource( 3 )
+script = SubResource("3")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -488,12 +511,12 @@ visible = false
 offset_left = 66.0
 offset_right = 78.0
 offset_bottom = 22.0
-texture = ExtResource( 8 )
+texture = ExtResource("7_bw8v3")
 
-[node name="Container" type="Container" parent="hud"]
-offset_right = 40.0
-offset_bottom = 40.0
-script = SubResource( 4 )
+[node name="Container" type="Control" parent="hud"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource("4")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -502,7 +525,7 @@ __meta__ = {
 offset_top = 75.0
 offset_right = 144.0
 offset_bottom = 105.0
-texture = ExtResource( 13 )
+texture = ExtResource("8_h5rnk")
 
 [node name="end_score_nb" type="HBoxContainer" parent="hud/Container"]
 offset_left = 55.0
@@ -512,7 +535,7 @@ offset_bottom = 109.0
 grow_horizontal = 0
 theme_override_constants/separation = 2
 alignment = 2
-script = SubResource( 5 )
+script = SubResource("5")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -522,7 +545,7 @@ visible = false
 offset_left = 72.0
 offset_right = 77.0
 offset_bottom = 5.0
-texture = ExtResource( 9 )
+texture = ExtResource("9_112b1")
 
 [node name="best_score_nb" type="HBoxContainer" parent="hud/Container"]
 offset_left = 55.0
@@ -532,7 +555,7 @@ offset_bottom = 121.0
 grow_horizontal = 0
 theme_override_constants/separation = 2
 alignment = 2
-script = SubResource( 15 )
+script = SubResource("15")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -542,64 +565,69 @@ visible = false
 offset_left = 72.0
 offset_right = 77.0
 offset_bottom = 5.0
-texture = ExtResource( 9 )
+texture = ExtResource("9_112b1")
 
 [node name="end_score" type="TextureRect" parent="hud/Container"]
 offset_top = 102.0
 offset_right = 144.0
-offset_bottom = 112.0
-texture = ExtResource( 14 )
+offset_bottom = 111.0
+texture = ExtResource("10_cmv1o")
 
 [node name="best_score" type="TextureRect" parent="hud/Container"]
 offset_top = 114.0
 offset_right = 144.0
-offset_bottom = 124.0
-texture = ExtResource( 20 )
+offset_bottom = 123.0
+texture = ExtResource("11_jm3s1")
 
-[node name="Container" type="Container" parent="hud/Container"]
-offset_top = 140.0
-offset_right = 144.0
-offset_bottom = 220.0
-script = SubResource( 6 )
+[node name="Container" type="Control" parent="hud/Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 12.0
+offset_right = 72.0
+offset_bottom = 92.0
+script = SubResource("6")
 
-[node name="Container" type="Container" parent="hud/Container/Container"]
+[node name="Container" type="Control" parent="hud/Container/Container"]
 offset_left = 18.0
 offset_right = 68.0
 offset_bottom = 45.0
-script = SubResource( 7 )
+script = SubResource("7")
 
 [node name="BunnySprite" type="AnimatedSprite2D" parent="hud/Container/Container/Container"]
-position = Vector2( 25, 20 )
-frames = SubResource( 8 )
+position = Vector2(25, 20)
+frames = SubResource("8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Container/Container/Container/BunnySprite"]
 autoplay = "highlight"
-anims/highlight = SubResource( 9 )
+anims/highlight = SubResource("9")
 
-[node name="Container2" type="Container" parent="hud/Container/Container"]
+[node name="Container2" type="Control" parent="hud/Container/Container"]
 offset_left = 76.0
 offset_right = 126.0
 offset_bottom = 45.0
-script = SubResource( 10 )
+script = SubResource("10")
 
 [node name="BirdSprite" type="AnimatedSprite2D" parent="hud/Container/Container/Container2"]
-position = Vector2( 25, 20 )
-frames = SubResource( 11 )
+position = Vector2(25, 20)
+frames = SubResource("11")
 frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Container/Container/Container2/BirdSprite"]
 autoplay = "inactive"
-anims/highlight = SubResource( 12 )
-anims/inactive = SubResource( 13 )
+anims/highlight = SubResource("12")
+anims/inactive = SubResource("13")
 
 [node name="TextureRect" type="TextureRect" parent="hud/Container/Container"]
 offset_top = 45.0
 offset_right = 144.0
 offset_bottom = 68.0
-texture = ExtResource( 7 )
+texture = ExtResource("19_8p6rd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Container"]
-anims/show = SubResource( 14 )
+anims/show = SubResource("14")
 
 [connection signal="gui_input" from="hud/Container/Container/Container" to="hud/Container/Container/Container" method="_on_Container_gui_input"]
 [connection signal="gui_input" from="hud/Container/Container/Container2" to="hud/Container/Container/Container2" method="_on_Container2_gui_input"]
