@@ -31,7 +31,7 @@ StageManager="*res://scenes/StageManager.tscn"
 window/size/viewport_width=144
 window/size/viewport_height=256
 window/stretch/mode="viewport"
-window/handheld/orientation="portrait"
+window/handheld/orientation=1
 
 [input]
 
