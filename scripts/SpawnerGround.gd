@@ -13,9 +13,9 @@ func spawn_and_move():
 	move_to_next_position()
 
 func spawn_ground():
-	var new_ground = scn_ground.instance()
+	var new_ground = scn_ground.instantiate()
 	new_ground.position = position
-	new_ground.connect("destroyed", self, "spawn_and_move")
+	new_ground.connect("destroyed", Callable(self, "spawn_and_move"))
 	get_node("Container").add_child(new_ground)
 
 func move_to_next_position():

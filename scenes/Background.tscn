@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://sprites/background-cave.png" type="Texture" id=1]
+[ext_resource path="res://sprites/background-cave.png" type="Texture2D" id=1]
 
 [node name="Background" type="CanvasLayer"]
 layer = -1

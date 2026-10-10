@@ -6,31 +6,34 @@ const GROUP_BIRDS = "birds"
 
 const MAX_SCORE = 99999999
 
-const MEDAL_BRONZE = 10
-const MEDAL_SILVER = 20
-const MEDAL_GOLD = 30
-const MEDAL_PLATINUM = 40
-
-var score_current = 0 setget _set_score_current
-var score_best = 0 setget _set_score_best
+var _score_current = 0
+var _score_best = 0
+var score_current = 0:
+	set(new_value):
+		_score_current = new_value
+		score_best = new_value
+		saveInPrefs()
+		emit_signal("score_current_updated")
+	get:
+		return _score_current
+var score_best = 0:
+	set(new_value):
+		if new_value > _score_best:
+			_score_best = new_value
+			emit_signal("score_best_updated")
+	get:
+		return _score_best
 var nb_retry = 0
 var selected_perso = 0
 var config_file = ConfigFile.new()
 var save_path = "user://config.cfg"
-var conf_data = {
-	"user": {
-		"best": 0,
-		"last_selected_character": 0,
-		"retries": 0
-	}
-}
 
 signal score_current_updated
 signal score_best_updated
 
 func _ready() -> void:
 	loadBestScore()
-	StageManager.connect("stage_change", self, "_on_stage_changed")
+	StageManager.connect("stage_change", Callable(self, "_on_stage_changed"))
 	pass
 
 func has_bird():
@@ -39,19 +42,6 @@ func has_bird():
 func _on_stage_changed():
 	score_current = 0
 	pass
-
-func _set_score_best(new_value):
-	if new_value > score_best:
-		score_best = new_value
-		emit_signal("score_best_updated")
-	pass
-
-func _set_score_current(new_value):
-	score_current = new_value
-	_set_score_best(score_current)
-	saveInPrefs()
-	emit_signal("score_current_updated")
-	pass 
 
 func set_selected_character(new_value):
 	self.selected_perso = new_value

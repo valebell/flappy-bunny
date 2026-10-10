@@ -3,7 +3,6 @@ extends Node2D
 const scn_pipe = preload("res://scenes/Pipe.tscn")
 const scn_wall_fire = preload("res://scenes/WallFire.tscn")
 const scn_bot = preload("res://scenes/Bot.tscn")
-const PIPE_WIDTH = 26
 const GROUND_HEIGHT = 8
 const OFFSET_X = 65
 const OFFSET_Y = 85
@@ -14,7 +13,7 @@ var nbPipesSpawned = 0
 func _ready() -> void:
 	var bird = Utils.get_main_node().get_node("Bird")
 	if bird:
-		bird.connect("state_changed", self, "_on_bird_state_changed", [], CONNECT_ONESHOT)
+		bird.connect("state_changed", Callable(self, "_on_bird_state_changed").bind(), CONNECT_ONE_SHOT)
 	pass
 
 func start() -> void:
@@ -35,40 +34,40 @@ func _on_bird_state_changed(bird: Bird):
 
 func init_position() -> Vector2:
 	randomize()
-	
-	var init_position = Vector2()
-	var rect = get_viewport_rect()
-	init_position.x = rect.size.x + 30
-	init_position.y = OFFSET_Y + 50
 
-	var camera = Utils.get_main_node().get_node("Camera")
+	var start_position = Vector2()
+	var rect = get_viewport_rect()
+	start_position.x = rect.size.x + 30
+	start_position.y = OFFSET_Y + 50
+
+	var camera = Utils.get_main_node().get_node("Camera3D")
 	if camera:
-		init_position.x += camera.get_total_position().x
-	
-	return init_position
+		start_position.x += camera.get_total_position().x
+
+	return start_position
 
 func next_position(current_position: Vector2) -> Vector2:
 	randomize()
-	
-	var next_position = current_position
+
+	var new_position = current_position
 	var rect = get_viewport_rect()
-	next_position.x += OFFSET_X + 30
+	new_position.x += OFFSET_X + 30
 	if nbPipesSpawned >= 5:
-		next_position.y = rand_range(0 + OFFSET_Y, rect.size.y - GROUND_HEIGHT - OFFSET_Y)
+		new_position.y = randf_range(0 + OFFSET_Y, rect.size.y - GROUND_HEIGHT - OFFSET_Y)
 	else:
-		next_position.y = OFFSET_Y + 50
-	return next_position
+		new_position.y = OFFSET_Y + 50
+	return new_position
 
 func createPipe() -> Pipe:
-	var new_pipe = scn_pipe.instance()
+	var new_pipe = scn_pipe.instantiate()
 	new_pipe.position = position
-	new_pipe.connect("destroyed", self, "spawn_and_move")
+	new_pipe.connect("destroyed", Callable(self, "spawn_and_move"))
 	return new_pipe
 
 func createWallPipe() -> Pipe:
-	var new_pipe = scn_wall_fire.instance()
+	var new_pipe = scn_wall_fire.instantiate()
 	new_pipe.position = position
-	new_pipe.connect("destroyed", self, "spawn_and_move")
+	new_pipe.connect("destroyed", Callable(self, "spawn_and_move"))
 	return new_pipe
 	
 func spawn_pipe():
@@ -105,14 +104,14 @@ func spawn_pipe():
 		var new_pipe = self.createWallPipe()
 		get_node("Container").add_child(new_pipe)
 		if level9 or level10:
-			   new_pipe.get_node("Top/AnimationPlayer").play("GrowingFire")
+			new_pipe.get_node("Top/AnimationPlayer").play("GrowingFire")
 	elif level2 or level3 or level4 or level5 or level6:
 		var new_pipe = self.createPipe()
 		get_node("Container").add_child(new_pipe)
 		if level5 or level6:
 			new_pipe.get_node("AnimationPlayer").play("GrowingFire")
 	elif level11:
-		var randValue = rand_range(0, 30)
+		var randValue = randf_range(0, 30)
 		if randValue <= 17:
 			var new_pipe = self.createPipe()
 			get_node("Container").add_child(new_pipe)
@@ -127,6 +126,6 @@ func spawn_pipe():
 
 
 func spawnBird():
-	var bot = scn_bot.instance()
+	var bot = scn_bot.instantiate()
 	bot.position = position
 	get_node("Container").add_child(bot)

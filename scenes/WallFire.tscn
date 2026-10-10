@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://sprites/wall-fire3.png" type="Texture" id=1]
-[ext_resource path="res://sprites/wall-fire2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/wall-fire3.png" type="Texture2D" id=1]
+[ext_resource path="res://sprites/wall-fire2.png" type="Texture2D" id=2]
 [ext_resource path="res://scripts/Pipe.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=4]
-[ext_resource path="res://sprites/wall-fire1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/wall-fire1.png" type="Texture2D" id=5]
 [ext_resource path="res://sounds/fire2.wav" type="AudioStream" id=6]
-[ext_resource path="res://sprites/fire_wall_5.png" type="Texture" id=7]
-[ext_resource path="res://sprites/fire_wall_4.png" type="Texture" id=8]
+[ext_resource path="res://sprites/fire_wall_5.png" type="Texture2D" id=7]
+[ext_resource path="res://sprites/fire_wall_4.png" type="Texture2D" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -28,8 +28,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 3, 4, 3, 1, 3, 4, 3 ]
 }
@@ -40,8 +40,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -10 ), Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
 }
@@ -52,8 +52,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1.1487 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1.1487 ),
 "update": 0,
 "values": [ Vector2( 0, -10 ), Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
 }
@@ -68,8 +68,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 1 ]
 }
@@ -80,8 +80,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -17.139, 3.90248 ), Vector2( 0, 0 ), Vector2( 18.5052, 0 ), Vector2( 0, 0 ) ]
 }
@@ -94,7 +94,7 @@ position = Vector2( 0, -0.871735 )
 collision_layer = 2
 script = ExtResource( 3 )
 
-[node name="Top" type="AnimatedSprite" parent="."]
+[node name="Top" type="AnimatedSprite2D" parent="."]
 position = Vector2( 0, -10 )
 frames = SubResource( 1 )
 frame = 3
@@ -109,7 +109,7 @@ position = Vector2( 0, -10 )
 scale = Vector2( 1, 0.839999 )
 shape = SubResource( 4 )
 
-[node name="EndPosition" type="Position2D" parent="."]
+[node name="EndPosition" type="Marker2D" parent="."]
 position = Vector2( 13, 0 )
 
 [node name="Coin" parent="." instance=ExtResource( 4 )]

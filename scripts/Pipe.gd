@@ -2,8 +2,8 @@ extends StaticBody2D
 
 class_name Pipe
 
-onready var rightPosition = get_node("EndPosition")
-onready var camera = Utils.get_main_node().get_node("Camera")
+@onready var rightPosition = get_node("EndPosition")
+@onready var camera = Utils.get_main_node().get_node("Camera3D")
 
 const LARGE = 30
 const MEDIUM = 20
@@ -14,7 +14,7 @@ signal destroyed
 func _ready() -> void:
 	add_to_group(Game.GROUP_PIPES)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if camera == null: return
 	
 	if rightPosition.global_position.x <= camera.get_total_position().x:

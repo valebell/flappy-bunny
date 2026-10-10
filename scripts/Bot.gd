@@ -4,13 +4,12 @@ extends RigidBody2D
 
 class_name Bot
 
-const xVelocity = 50
 const STATE_FLYING = 0
 const STATE_FLAP = 1
 const STATE_HIT = 2
 const STATE_GROUNDED = 3
 
-onready var state = FlyingState.new(self)
+@onready var state = FlyingState.new(self)
 
 signal state_changed
 
@@ -52,7 +51,6 @@ func get_state():
 		return STATE_HIT
 	else:
 		return STATE_GROUNDED
-	pass
 
 # Flying State ----------------------------------------------------------------
 
@@ -77,16 +75,16 @@ class FlyingState:
 			_bird.set_state(STATE_GROUNDED)
 		pass
 		
-	func update(delta) -> void:
+	func update(_delta) -> void:
 		pass
 
-	func input(event) -> void:
+	func input(_event) -> void:
 		pass
 
 	func exit() -> void:
 		_bird.gravity_scale = prev_gravity_scale
 		_bird.get_node("AnimationPlayer").stop()
-		_bird.get_node("AnimatedSprite").position = Vector2.ZERO
+		_bird.get_node("AnimatedSprite2D").position = Vector2.ZERO
 		pass
 
 # Flapping State ----------------------------------------------------------------
@@ -100,7 +98,7 @@ class FlappingState:
 		flap()
 		pass
 
-	func update(delta) -> void:
+	func update(_delta) -> void:
 		if Input.is_action_just_released("jump"):
 			flap()
 		elif Input.is_action_pressed("jump"):
@@ -162,10 +160,10 @@ class HitState:
 			_bird.set_state(STATE_GROUNDED)
 		pass
 
-	func update(delta) -> void:
+	func update(_delta) -> void:
 		pass
 
-	func input(event) -> void:
+	func input(_event) -> void:
 		pass
 
 	func exit() -> void:
@@ -186,10 +184,10 @@ class GroundedState:
 			_bird.get_node("sound_hit").play() 
 		pass
 
-	func update(delta) -> void:
+	func update(_delta) -> void:
 		pass
 
-	func input(event) -> void:
+	func input(_event) -> void:
 		pass
 
 	func exit() -> void:
