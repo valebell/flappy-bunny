@@ -5,6 +5,10 @@ the Godot engine and how to create a game. It was recently migrated to the
 Godot 4.7 project format, but the gameplay and art are unchanged from the
 original learning project.
 
+## Creation
+
+https://github.com/user-attachments/assets/07567754-75b8-479b-a621-169f1005db8e
+
 ## Gameplay
 
 Before each run, pick one of the two characters:
