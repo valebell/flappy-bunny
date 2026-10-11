@@ -6,3 +6,6 @@
 
 # Export output
 ios/
+
+# Local export settings (contains machine-specific paths and signing IDs)
+export_presets.cfg
